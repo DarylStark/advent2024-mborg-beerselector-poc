@@ -18,11 +18,6 @@ void BeerSelector::setup()
 
     _factory->get_os()->sleep_miliseconds(1000);
     set_state(std::make_shared<BootingState>(_factory, *this));
-
-    // _output_handler->print("Retrieving configuration register ... ");
-    // _output_handler->flush();
-    // _factory->get_os()->sleep_miliseconds(1000);
-    // _output_handler->println("DONE");
 }
 
 void BeerSelector::loop()
