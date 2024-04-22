@@ -2,11 +2,11 @@
 #define __PC_OBJECT_FACTORY_H__
 
 #include <memory>
-#include "../ds/cached_platform_object_factory.h"
+#include "../ds/platform_object_factory.h"
 
 namespace ds::pc
 {
-    class PCObjectFactory : public ds::CachedPlatformObjectFactory
+    class PCObjectFactory : public ds::PlatformObjectFactory
     {
         // A generic PlatformOjbectFactory class that can be customized by using
         // templates.

@@ -109,6 +109,4 @@ void BootingState::loop()
     // Connect with the configured WiFi if needed for this.
 
     // If the license is correct, boot into user mode
-
-    _application.set_state(nullptr);
 }
