@@ -13,7 +13,7 @@ namespace ds::pc
 
     bool PCInputHandler::is_mode_pressed() const
     {
-        std::ifstream file("enter.txt");
+        std::ifstream file("mode.txt");
         return file.good();
     }
 }
