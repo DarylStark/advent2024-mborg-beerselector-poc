@@ -11,6 +11,9 @@ namespace ds
     public:
         // Methods to retrieve data
         virtual std::string get_string() const = 0;
+
+        // Methods to check if a specific button is pressed
+        virtual bool is_mode_pressed() const = 0;
     };
 }
 

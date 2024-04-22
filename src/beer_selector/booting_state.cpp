@@ -4,7 +4,7 @@
 #include "rommon_state.h"
 
 BootingState::BootingState(std::shared_ptr<ds::PlatformObjectFactory> factory, ds::BaseApplication &application)
-    : ds::BaseState(factory, application), _output_handler(_factory->get_output_handler())
+    : ds::BaseState(factory, application), _output_handler(_factory->get_output_handler()), _input_handler(_factory->get_input_handler())
 {
 }
 
@@ -77,6 +77,12 @@ void BootingState::_wait_for_keypress_rommon()
     {
         _output_handler->print("...");
         _output_handler->flush();
+        if (_input_handler->is_mode_pressed())
+        {
+            _output_handler->println("\n\nGOING TO ROMMON...");
+            _go_to_rommon();
+            return;
+        }
         os->sleep_miliseconds(1000);
     }
 

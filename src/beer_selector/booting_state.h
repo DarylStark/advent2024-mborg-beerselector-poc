@@ -10,6 +10,7 @@ class BootingState : public ds::BaseState
 {
 private:
     std::shared_ptr<ds::OutputHandler> _output_handler;
+    std::shared_ptr<ds::InputHandler> _input_handler;
 
     void _print_logo() const;
     void _print_device_information() const;

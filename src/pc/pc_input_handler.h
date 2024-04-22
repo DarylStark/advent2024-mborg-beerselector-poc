@@ -10,6 +10,8 @@ namespace ds::pc
     {
     public:
         std::string get_string() const;
+
+        bool is_mode_pressed() const;
     };
 }
 
