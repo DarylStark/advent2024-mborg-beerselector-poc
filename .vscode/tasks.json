@@ -16,8 +16,8 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-        }
+            }
+        },
         {
             "type": "shell",
             "label": "Build project (DEBUG)",
@@ -34,7 +34,7 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
         },
         {
             "type": "shell",
@@ -52,7 +52,7 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
         }
     ],
     "version": "2.0.0"
