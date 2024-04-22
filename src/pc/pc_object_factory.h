@@ -14,6 +14,7 @@ namespace ds::pc
         std::shared_ptr<ds::OutputHandler> _get_output_handler();
         std::shared_ptr<ds::InputHandler> _get_input_handler();
         std::shared_ptr<ds::OS> _get_os();
+        std::shared_ptr<ds::ConfigurationLoader> _get_configuration_loader();
     };
 }
 

@@ -3,6 +3,41 @@
 #include "booting_state.h"
 #include "rommon_state.h"
 
+ScopedAction::ScopedAction(std::string title, std::shared_ptr<ds::OutputHandler> output_handler)
+    : _success(true), _output_handler(output_handler)
+{
+    std::stringstream out;
+    out << "\n"
+        << std::setw(50)
+        << std::setfill('.')
+        << std::left
+        << title;
+    _output_handler->print(out.str());
+    _output_handler->flush();
+}
+
+ScopedAction::~ScopedAction()
+{
+    if (_success)
+    {
+        _print_done();
+        return;
+    }
+    _print_fail();
+}
+
+void ScopedAction::_print_done()
+{
+    _output_handler->println("DONE");
+    _output_handler->flush();
+}
+
+void ScopedAction::_print_fail()
+{
+    _output_handler->println("FAIL");
+    _output_handler->flush();
+}
+
 BootingState::BootingState(std::shared_ptr<ds::PlatformObjectFactory> factory, ds::BaseApplication &application)
     : ds::BaseState(factory, application), _output_handler(_factory->get_output_handler()), _input_handler(_factory->get_input_handler())
 {
@@ -65,11 +100,11 @@ void BootingState::_print_device_information() const
 
 void BootingState::_wait_for_keypress_rommon()
 {
-    _output_handler->println("PRESS AND HOLD THE MODE BUTTON TO SKIP BOOTING AND GO TO ROMMON.");
+    _output_handler->println("PRESS THE MODE BUTTON TO SKIP BOOTING AND GO TO ROMMON.");
     auto os = _factory->get_os();
 
     uint16_t counter = 0;
-    while (counter++ < SECONDS_WAIT_FOR_KEYPRESS * 4)
+    while (counter++ < SECONDS_WAIT_FOR_KEYPRESS * 100)
     {
         _output_handler->print(".");
         _output_handler->flush();
@@ -79,10 +114,16 @@ void BootingState::_wait_for_keypress_rommon()
             _go_to_rommon();
             return;
         }
-        os->sleep_miliseconds(250);
+        os->sleep_miliseconds(10);
     }
 
     _output_handler->println("\n\nCONTINUE BOOTING SYSTEM NORMALLY...");
+}
+
+void BootingState::_load_configuration()
+{
+    ScopedAction action("Loading configuration", _output_handler);
+    _factory->get_configuration_loader()->load_configuration();
 }
 
 void BootingState::_go_to_rommon()
@@ -97,13 +138,16 @@ void BootingState::loop()
 
     // Start with the system boot
     _output_handler->println("SYSTEM BOOTING ...");
+    _output_handler->flush();
+
+    // Retrieve the configuration
+    _load_configuration();
+
     _output_handler->println("");
     _output_handler->flush();
 
     // Give the user the option to skip the booting and go to ROMMON
     _wait_for_keypress_rommon();
-
-    // First, we retrieve the configuration
 
     // Check if a license is given and try to retrieve it if it isn't given.
     // Connect with the configured WiFi if needed for this.

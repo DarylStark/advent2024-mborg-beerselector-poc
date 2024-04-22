@@ -22,4 +22,11 @@ namespace ds
             _os = _get_os();
         return _os;
     }
+
+    std::shared_ptr<ConfigurationLoader> PlatformObjectFactory::get_configuration_loader()
+    {
+        if (!_configuration_loader)
+            _configuration_loader = _get_configuration_loader();
+        return _configuration_loader;
+    }
 }
