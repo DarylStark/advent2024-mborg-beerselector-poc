@@ -65,17 +65,13 @@ void BootingState::_print_device_information() const
 
 void BootingState::_wait_for_keypress_rommon()
 {
-    std::stringstream waiting_msg;
-    waiting_msg << "WAITING " << SECONDS_WAIT_FOR_KEYPRESS << " SECONDS\n";
-
     _output_handler->println("PRESS AND HOLD THE MODE BUTTON TO SKIP BOOTING AND GO TO ROMMON.");
-    _output_handler->println(waiting_msg.str());
     auto os = _factory->get_os();
 
     uint16_t counter = 0;
-    while (counter++ < SECONDS_WAIT_FOR_KEYPRESS)
+    while (counter++ < SECONDS_WAIT_FOR_KEYPRESS * 4)
     {
-        _output_handler->print("...");
+        _output_handler->print(".");
         _output_handler->flush();
         if (_input_handler->is_mode_pressed())
         {
@@ -83,7 +79,7 @@ void BootingState::_wait_for_keypress_rommon()
             _go_to_rommon();
             return;
         }
-        os->sleep_miliseconds(1000);
+        os->sleep_miliseconds(250);
     }
 
     _output_handler->println("\n\nCONTINUE BOOTING SYSTEM NORMALLY...");

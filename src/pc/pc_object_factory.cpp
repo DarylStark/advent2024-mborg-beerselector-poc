@@ -5,21 +5,18 @@
 
 namespace ds::pc
 {
-    std::shared_ptr<ds::OutputHandler> PCObjectFactory::get_output_handler()
+    std::shared_ptr<ds::OutputHandler> PCObjectFactory::_get_output_handler()
     {
-        // TODO: cache this object and return the cached version
         return std::make_shared<PCOutputHandler>();
     }
 
-    std::shared_ptr<ds::InputHandler> PCObjectFactory::get_input_handler()
+    std::shared_ptr<ds::InputHandler> PCObjectFactory::_get_input_handler()
     {
-        // TODO: cache this object and return the cached version
         return std::make_shared<PCInputHandler>();
     }
 
-    std::shared_ptr<ds::OS> PCObjectFactory::get_os()
+    std::shared_ptr<ds::OS> PCObjectFactory::_get_os()
     {
-        // TODO: cache this object and return the cached version
         return std::make_shared<ds::pc::PCOS>();
     }
 }
