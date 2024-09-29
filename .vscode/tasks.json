@@ -3,12 +3,15 @@
         {
             "type": "shell",
             "label": "Build project (RELEASE)",
-            "command": "/usr/bin/make",
+            "command": "/usr/bin/cmake",
             "args": [
-                "release"
+                "--build",
+                ".",
+                "--target",
+                "app"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src"
+                "cwd": "${workspaceFolder}/build"
             },
             "problemMatcher": [
                 "$gcc"
@@ -21,12 +24,15 @@
         {
             "type": "shell",
             "label": "Build project (DEBUG)",
-            "command": "/usr/bin/make",
+            "command": "/usr/bin/cmake",
             "args": [
-                "debug"
+                "--build",
+                ".",
+                "--target",
+                "app_debug"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src"
+                "cwd": "${workspaceFolder}/build"
             },
             "problemMatcher": [
                 "$gcc"
@@ -39,18 +45,21 @@
         {
             "type": "shell",
             "label": "Clean build directory",
-            "command": "/usr/bin/make",
+            "command": "/usr/bin/cmake",
             "args": [
+                "--build",
+                ".",
+                "--target",
                 "clean"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/src"
+                "cwd": "${workspaceFolder}/build"
             },
             "problemMatcher": [
                 "$gcc"
             ],
             "group": {
-                "kind": "build",
+                "kind": "none",
                 "isDefault": true
             }
         }
