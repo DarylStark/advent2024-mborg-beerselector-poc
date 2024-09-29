@@ -1,0 +1,10 @@
+{
+    "name": "Advent2024-BeerSelector",
+    "image": "dast1986/slough-dev-dc-cpp:latest",
+    "remoteEnv": {
+        "PROMPTNAME": "BeerSelector"
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+}
