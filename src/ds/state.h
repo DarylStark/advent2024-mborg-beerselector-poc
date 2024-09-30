@@ -9,6 +9,6 @@ namespace ds
     public:
         virtual void loop() = 0;
     };
-}
+}  // namespace ds
 
 #endif /* __STATE_H__ */

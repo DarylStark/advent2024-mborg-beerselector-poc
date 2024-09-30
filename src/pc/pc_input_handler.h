@@ -2,6 +2,7 @@
 #define __PC_INPUT_HANDLER_H__
 
 #include <string>
+
 #include "../ds/input_handler.h"
 
 namespace ds::pc
@@ -13,6 +14,6 @@ namespace ds::pc
 
         bool is_mode_pressed() const;
     };
-}
+}  // namespace ds::pc
 
 #endif /* __PC_INPUT_HANDLER_H__ */

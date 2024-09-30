@@ -10,6 +10,6 @@ namespace ds
         virtual void setup() = 0;
         virtual void loop() = 0;
     };
-}
+}  // namespace ds
 
 #endif /* __APPLICATION_H__ */

@@ -3,11 +3,10 @@
 
 #include <memory>
 
-#include "output_handler.h"
+#include "configuration_loader.h"
 #include "input_handler.h"
 #include "os.h"
-
-#include "configuration_loader.h"
+#include "output_handler.h"
 
 namespace ds
 {
@@ -23,7 +22,8 @@ namespace ds
         virtual std::shared_ptr<OutputHandler> _get_output_handler() = 0;
         virtual std::shared_ptr<InputHandler> _get_input_handler() = 0;
         virtual std::shared_ptr<OS> _get_os() = 0;
-        virtual std::shared_ptr<ConfigurationLoader> _get_configuration_loader() = 0;
+        virtual std::shared_ptr<ConfigurationLoader>
+        _get_configuration_loader() = 0;
 
     public:
         std::shared_ptr<OutputHandler> get_output_handler();
@@ -31,6 +31,6 @@ namespace ds
         std::shared_ptr<OS> get_os();
         std::shared_ptr<ConfigurationLoader> get_configuration_loader();
     };
-};
+};  // namespace ds
 
 #endif /* __PLATFORM_OBJECT_FACTORY_H__ */

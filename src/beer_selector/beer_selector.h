@@ -2,6 +2,7 @@
 #define __BEER_SELECTOR_H__
 
 #include <memory>
+
 #include "../ds/base_application.h"
 
 class BeerSelector : public ds::BaseApplication

@@ -2,6 +2,7 @@
 #define __PC_OUTPUT_HANDLER_H__
 
 #include <string>
+
 #include "../ds/output_handler.h"
 
 namespace ds::pc
@@ -13,6 +14,6 @@ namespace ds::pc
         void println(const std::string text) const;
         void flush();
     };
-}
+}  // namespace ds::pc
 
 #endif /* __PC_OUTPUT_HANDLER_H__ */

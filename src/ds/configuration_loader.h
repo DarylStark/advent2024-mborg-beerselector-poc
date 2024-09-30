@@ -8,6 +8,6 @@ namespace ds
     public:
         virtual void load_configuration() = 0;
     };
-}
+}  // namespace ds
 
-#endif // __CONFIGURATION_LOADER_H__
+#endif  // __CONFIGURATION_LOADER_H__

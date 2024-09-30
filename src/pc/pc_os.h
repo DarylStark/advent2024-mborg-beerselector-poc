@@ -10,6 +10,6 @@ namespace ds::pc
     public:
         void sleep_miliseconds(uint32_t miliseconds);
     };
-}
+}  // namespace ds::pc
 
 #endif /* __PC_OS_H__ */

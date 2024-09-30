@@ -1,10 +1,10 @@
 #ifndef __BOOTING_STATE_H__
 #define __BOOTING_STATE_H__
 
-#include "app_info.h"
 #include "../ds/base_state.h"
+#include "app_info.h"
 
-#define SECONDS_WAIT_FOR_KEYPRESS 10 // TODO: Set to a normal number
+#define SECONDS_WAIT_FOR_KEYPRESS 10  // TODO: Set to a normal number
 
 class ScopedAction
 {
@@ -15,7 +15,8 @@ private:
     void _print_fail();
 
 public:
-    ScopedAction(std::string title, std::shared_ptr<ds::OutputHandler> output_handler);
+    ScopedAction(std::string title,
+                 std::shared_ptr<ds::OutputHandler> output_handler);
     ~ScopedAction();
 };
 
@@ -34,7 +35,8 @@ private:
     void _load_configuration();
 
 public:
-    BootingState(std::shared_ptr<ds::PlatformObjectFactory> factory, ds::BaseApplication &application);
+    BootingState(std::shared_ptr<ds::PlatformObjectFactory> factory,
+                 ds::BaseApplication &application);
     void loop();
 };
 

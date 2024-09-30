@@ -8,6 +8,9 @@ project(MyArduinoProject VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Set compile commands for clang-tidy
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Add source files
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 

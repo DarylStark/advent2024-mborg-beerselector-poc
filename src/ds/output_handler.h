@@ -16,6 +16,6 @@ namespace ds
         // Stream maintenance
         virtual void flush() = 0;
     };
-}
+}  // namespace ds
 
 #endif /* __OUTPUT_HANDLER_H__ */

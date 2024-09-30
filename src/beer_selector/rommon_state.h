@@ -10,7 +10,8 @@ private:
     std::shared_ptr<ds::InputHandler> _input_handler;
 
 public:
-    RommonState(std::shared_ptr<ds::PlatformObjectFactory> factory, ds::BaseApplication &application);
+    RommonState(std::shared_ptr<ds::PlatformObjectFactory> factory,
+                ds::BaseApplication &application);
     void loop();
 };
 

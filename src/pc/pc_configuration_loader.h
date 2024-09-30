@@ -10,6 +10,6 @@ namespace ds::pc
     public:
         void load_configuration() override;
     };
-}
+}  // namespace ds::pc
 
 #endif /* __PC_CONFIGURATION_LOADER_H__ */

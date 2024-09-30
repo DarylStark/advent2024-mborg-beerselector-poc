@@ -15,6 +15,6 @@ namespace ds
         // Methods to check if a specific button is pressed
         virtual bool is_mode_pressed() const = 0;
     };
-}
+}  // namespace ds
 
 #endif /* __INPUT_HANDLER_H__ */

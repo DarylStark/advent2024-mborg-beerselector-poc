@@ -2,10 +2,11 @@
 #define __BASE_APPLICATION_H__
 
 #include <memory>
+
 #include "application.h"
+#include "configuration_loader.h"
 #include "platform_object_factory.h"
 #include "state.h"
-#include "configuration_loader.h"
 
 namespace ds
 {
@@ -25,6 +26,6 @@ namespace ds
         // State methods
         void set_state(std::shared_ptr<ds::State> state);
     };
-}
+}  // namespace ds
 
 #endif /* __BASE_APPLICATION_H__ */

@@ -11,6 +11,6 @@ namespace ds
     public:
         virtual void sleep_miliseconds(uint32_t miliseconds) = 0;
     };
-}
+}  // namespace ds
 
 #endif /* __OS_H__ */

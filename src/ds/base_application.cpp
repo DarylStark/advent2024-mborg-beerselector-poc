@@ -1,11 +1,15 @@
 #include "base_application.h"
 
-namespace ds {
+namespace ds
+{
     BaseApplication::BaseApplication(
         std::shared_ptr<PlatformObjectFactory> factory)
-        : _factory(factory), _state(nullptr) {}
+        : _factory(factory), _state(nullptr)
+    {
+    }
 
-    void BaseApplication::set_state(std::shared_ptr<ds::State> state) {
+    void BaseApplication::set_state(std::shared_ptr<ds::State> state)
+    {
         _state = state;
     }
 }  // namespace ds
