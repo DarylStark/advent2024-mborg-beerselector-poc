@@ -2,6 +2,7 @@
 #define __CLI_PARSER_ROMMON_FACTORY_H__
 
 #include "../cli_model.h"
+#include "../shared/cli_shared_parsers.h"
 
 class CLIParserROMMONFactory : public CLIParserFactory
 {

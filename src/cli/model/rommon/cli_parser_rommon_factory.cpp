@@ -41,7 +41,10 @@ CLIParserROMMONFactory::_create_parser()
     std::shared_ptr<ArgumentendCommandParser> parser =
         std::make_shared<ArgumentendCommandParser>("ROMMON");
 
-    // Add parsers
+    // Add shared parsers
+    parser->add_parser("reload", CLISharedParser::get_reload_parser());
+
+    // Add specific parsers
     parser->add_parser("auth", _get_auth_parser());
 
     return parser;
