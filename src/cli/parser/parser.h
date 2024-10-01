@@ -19,8 +19,8 @@ public:
     void delete_parser(std::string name);
     std::shared_ptr<Parser> get_parser(std::string name) const;
 
-    virtual void parse(std::vector<std::string> arguments) = 0;
-    virtual void execute(std::map<std::string, std::string> args) const = 0;
+    virtual bool parse(std::vector<std::string> arguments) = 0;
+    virtual bool execute(std::map<std::string, std::string> args) const = 0;
 
     const std::string &get_description() const;
     const std::map<std::string, std::shared_ptr<Parser>> &get_parsers() const;

@@ -43,6 +43,7 @@ CLIParserROMMONFactory::_create_parser()
 
     // Add shared parsers
     parser->add_parser("reload", CLISharedParser::get_reload_parser());
+    parser->add_parser("exit", CLISharedParser::get_reload_parser());
 
     // Add specific parsers
     parser->add_parser("auth", _get_auth_parser());

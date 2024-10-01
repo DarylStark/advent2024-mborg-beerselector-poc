@@ -6,7 +6,7 @@ ArgumentendCommandParser::ArgumentendCommandParser(
 {
 }
 
-void ArgumentendCommandParser::parse(std::vector<std::string> arguments)
+bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
 {
     std::map<std::string, std::string> argument_map;
     if (arguments.size() > 0)
@@ -21,7 +21,7 @@ void ArgumentendCommandParser::parse(std::vector<std::string> arguments)
             std::vector<std::string> sub_arguments(arguments.begin() + 1,
                                                    arguments.end());
             parser->parse(sub_arguments);
-            return;
+            return true;
         }
 
         // It wasn't a subparser, so it must be an argument
@@ -32,7 +32,7 @@ void ArgumentendCommandParser::parse(std::vector<std::string> arguments)
             {
                 // TODO: Throw exception about too many arguments
                 std::cerr << "Unrecognized argument: \"" << argument << "\"\n";
-                return;
+                return true;
             }
 
             const auto &argument_object = _arguments[argument_nr];
@@ -52,9 +52,11 @@ void ArgumentendCommandParser::parse(std::vector<std::string> arguments)
 
     // Everything is parsed! Let's execute the command!
     execute(argument_map);
+
+    return true;
 }
 
-void ArgumentendCommandParser::execute(
+bool ArgumentendCommandParser::execute(
     std::map<std::string, std::string> args) const
 {
     std::cout << "\n\nHello, running command with the following arguments:"
@@ -73,6 +75,8 @@ void ArgumentendCommandParser::execute(
         }
     }
     std::cout << "\n\n";
+
+    return true;
 }
 
 void ArgumentendCommandParser::add_argument(std::shared_ptr<Argument> argument)

@@ -1,7 +1,7 @@
 #include "rommon_state.h"
 
+#include "../cli/cli/cli_runner.h"
 #include "../cli/model/rommon/cli_parser_rommon_factory.h"
-#include "../cli/parser/argumented_command_parser.h"
 
 RommonState::RommonState(std::shared_ptr<ds::PlatformObjectFactory> factory,
                          ds::BaseApplication &application)
@@ -21,19 +21,9 @@ void RommonState::loop()
 
     _output_handler->println("ROMMON INITIALIZED\n\n");
 
-    // Command line
-    while (true)
-    {
-        std::string command;
-        std::cout << "# ";
-        std::getline(std::cin, command);
-        if (!std::cin.good()) break;
+    CLIRunner runner(word_parser, "ROMMON> ");
+    while (runner.run())
+        ;
 
-        std::stringstream iss(command);
-        std::vector<std::string> words(std::istream_iterator<std::string>{iss},
-                                       std::istream_iterator<std::string>());
-
-        // Parse
-        word_parser->parse(words);
-    }
+    _output_handler->println("EXITING ROMMON\n\n");
 }
