@@ -8,10 +8,15 @@ ArgumentendCommandParser::ArgumentendCommandParser(
     : Parser(description), _command(command)
 {
     if (add_helper)
+    {
+        auto help_command = std::make_shared<HelpCommand>(this);
+        this->add_parser("?",
+                         std::make_shared<ArgumentendCommandParser>(
+                             "Help about this command", help_command, false));
         this->add_parser("help",
                          std::make_shared<ArgumentendCommandParser>(
-                             "Help about this command",
-                             std::make_shared<HelpCommand>(this), false));
+                             "Help about this command", help_command, false));
+    }
 }
 
 bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
@@ -64,28 +69,9 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
 bool ArgumentendCommandParser::execute(
     std::map<std::string, std::string> args) const
 {
-    std::cout << "\n\nHello, running command with the following arguments:"
-              << std::endl;
-    for (const auto &argument : _arguments)
-    {
-        std::cout << "> " << argument->get_name();
-        if (args.find(argument->get_name()) != args.end())
-        {
-            std::cout << ": \"" << args.at(argument->get_name()) << "\""
-                      << std::endl;
-        }
-        else
-        {
-            std::cout << " (not set)" << std::endl;
-        }
-    }
-    std::cout << "\n\n";
+    if (_command) return _command->execute();
 
-    if (_command)
-        return _command->execute();
-    else
-        std::cerr << "No command set for this parser!\n";
-
+    std::cerr << "No command set for this parser!\n";
     return true;
 }
 
