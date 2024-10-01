@@ -1,12 +1,17 @@
 #include "argumented_command_parser.h"
 
+#include "../command/help_command.h"
+
 ArgumentendCommandParser::ArgumentendCommandParser(
-    const std::string description, bool add_helper)
-    : Parser(description)
+    const std::string description, std::shared_ptr<Command> command,
+    bool add_helper)
+    : Parser(description), _command(command)
 {
     if (add_helper)
-        this->add_parser("help", std::make_shared<ArgumentendCommandParser>(
-                                     "Help about this command", false));
+        this->add_parser("help",
+                         std::make_shared<ArgumentendCommandParser>(
+                             "Help about this command",
+                             std::make_shared<HelpCommand>(this), false));
 }
 
 bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
@@ -23,8 +28,7 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
         {
             std::vector<std::string> sub_arguments(arguments.begin() + 1,
                                                    arguments.end());
-            parser->parse(sub_arguments);
-            return true;
+            return parser->parse(sub_arguments);
         }
 
         // It wasn't a subparser, so it must be an argument
@@ -54,9 +58,7 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
     }
 
     // Everything is parsed! Let's execute the command!
-    execute(argument_map);
-
-    return true;
+    return execute(argument_map);
 }
 
 bool ArgumentendCommandParser::execute(
@@ -78,6 +80,11 @@ bool ArgumentendCommandParser::execute(
         }
     }
     std::cout << "\n\n";
+
+    if (_command)
+        return _command->execute();
+    else
+        std::cerr << "No command set for this parser!\n";
 
     return true;
 }

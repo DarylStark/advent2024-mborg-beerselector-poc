@@ -36,7 +36,5 @@ bool CLIRunner::run()
                                    std::istream_iterator<std::string>());
 
     // Parse
-    _parser->parse(words);
-
-    return true;
+    return _parser->parse(words);
 }
