@@ -11,5 +11,6 @@ RommonState::RommonState(std::shared_ptr<ds::PlatformObjectFactory> factory,
 void RommonState::loop()
 {
     _output_handler->println("ROMMON INITIALIZED\n\n");
-    _factory->get_os()->sleep_miliseconds(100);
+    _output_handler->println("HERE SHOULD GO THE COMMANDLINE\n\n");
+    _factory->get_os()->sleep_miliseconds(10000);
 }
