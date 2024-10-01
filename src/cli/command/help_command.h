@@ -1,5 +1,5 @@
-#ifndef HELD_COMMAND_H
-#define HELD_COMMAND_H
+#ifndef HELP_COMMAND_H
+#define HELP_COMMAND_H
 
 #include <iomanip>
 
@@ -16,4 +16,4 @@ public:
     bool execute() override;
 };
 
-#endif /* HELD_COMMAND_H */
+#endif /* HELP_COMMAND_H */
