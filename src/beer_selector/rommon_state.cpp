@@ -1,5 +1,6 @@
 #include "rommon_state.h"
 
+#include "../cli/model/rommon/cli_parser_rommon_factory.h"
 #include "../cli/parser/argumented_command_parser.h"
 
 RommonState::RommonState(std::shared_ptr<ds::PlatformObjectFactory> factory,
@@ -14,29 +15,9 @@ void RommonState::loop()
 {
     _output_handler->println("INITIALIZING ROMMON\n\n");
 
-    ArgumentendCommandParser word_parser("ROMMON");
-
-    // Auth
-    std::shared_ptr<ArgumentendCommandParser> auth =
-        std::make_shared<ArgumentendCommandParser>("Authentication details");
-
-    // auth credentials <username> <password>
-    std::shared_ptr<ArgumentendCommandParser> running_config =
-        std::make_shared<ArgumentendCommandParser>(
-            "Show in-memory configuration");
-    auth->add_parser("credentials", running_config);
-    running_config->add_argument(std::make_shared<StringArgument>(
-        "username", true, "The username to set"));
-    running_config->add_argument(std::make_shared<StringArgument>(
-        "password", true, "The password to set"));
-
-    // Auth
-    std::shared_ptr<ArgumentendCommandParser> help =
-        std::make_shared<ArgumentendCommandParser>("Command line help");
-
-    // Add parsers
-    word_parser.add_parser("auth", auth);
-    word_parser.add_parser("help", help);
+    CLIParserROMMONFactory parser_factory;
+    std::shared_ptr<ArgumentendCommandParser> word_parser =
+        parser_factory.get_parser();
 
     _output_handler->println("ROMMON INITIALIZED\n\n");
 
@@ -53,6 +34,6 @@ void RommonState::loop()
                                        std::istream_iterator<std::string>());
 
         // Parse
-        word_parser.parse(words);
+        word_parser->parse(words);
     }
 }
