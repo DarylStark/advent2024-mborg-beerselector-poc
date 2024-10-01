@@ -21,6 +21,12 @@ const std::string &Argument::get_description() const
     return _description;
 }
 
+StaticArgument::StaticArgument(std::string name, std::string expected_value,
+                               bool required, const std::string description)
+    : Argument(name, required, description), _expected_value(expected_value)
+{
+}
+
 void StaticArgument::parse(std::string argument)
 {
     // TODO: Implement code to check if this argument is valid
