@@ -1,9 +1,12 @@
 #include "argumented_command_parser.h"
 
 ArgumentendCommandParser::ArgumentendCommandParser(
-    const std::string description)
+    const std::string description, bool add_helper)
     : Parser(description)
 {
+    if (add_helper)
+        this->add_parser("help", std::make_shared<ArgumentendCommandParser>(
+                                     "Help about this command", false));
 }
 
 bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
