@@ -15,7 +15,7 @@ private:
 public:
     ArgumentendCommandParser(const std::string description = std::string(""),
                              std::shared_ptr<Command> command = nullptr,
-                             bool add_helper = true);
+                             bool add_helper = true, bool show_in_help = true);
     virtual bool parse(std::vector<std::string> arguments) override;
     virtual bool execute(std::map<std::string, std::string> args) const;
     void add_argument(std::shared_ptr<Argument> argument);

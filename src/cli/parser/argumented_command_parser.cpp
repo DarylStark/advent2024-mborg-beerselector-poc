@@ -4,15 +4,16 @@
 
 ArgumentendCommandParser::ArgumentendCommandParser(
     const std::string description, std::shared_ptr<Command> command,
-    bool add_helper)
-    : Parser(description), _command(command)
+    bool add_helper, bool show_in_help)
+    : Parser(description, show_in_help), _required_arguments(0),
+      _command(command)
 {
     if (add_helper)
     {
         auto help_command = std::make_shared<HelpCommand>(this);
-        this->add_parser("?",
-                         std::make_shared<ArgumentendCommandParser>(
-                             "Help about this command", help_command, false));
+        this->add_parser(
+            "?", std::make_shared<ArgumentendCommandParser>(
+                     "Help about this command", help_command, false, false));
         this->add_parser("help",
                          std::make_shared<ArgumentendCommandParser>(
                              "Help about this command", help_command, false));
@@ -71,7 +72,7 @@ bool ArgumentendCommandParser::execute(
 {
     if (_command) return _command->execute();
 
-    std::cerr << "No command set for this parser!\n";
+    std::cerr << "This command is not implemented\n";
     return true;
 }
 

@@ -4,31 +4,30 @@ HelpCommand::HelpCommand(ArgumentendCommandParser *parser) : _parser(parser) {}
 
 bool HelpCommand::execute()
 {
-    // TODO: Implement help command
-    // - Get all subparsers from the given parser
-    // - Get all arguments from the given parser
+    // TODO: Only show `Subcommands` and `Arguments` headers when there is
+    // something to show
 
-    if (!_parser->get_parsers().empty())
+    std::cout << "\nSubcommands:\n";
+    for (const auto &subparser : _parser->get_parsers())
     {
-        std::cout << "\nSubcommands:\n";
-        for (const auto &subparser : _parser->get_parsers())
-        {
-            std::cout << "  " << subparser.first << " - "
-                      << subparser.second->get_description() << "\n";
-        }
-        std::cout << '\n';
+        if (!subparser.second->show_in_help()) continue;
+        std::cout << "  " << std::left << std::setw(24) << subparser.first
+                  << subparser.second->get_description() << "\n";
     }
 
-    if (!_parser->get_argumentes().empty())
+    std::cout << "\nArguments:\n";
+    for (const auto &argument : _parser->get_argumentes())
     {
-        std::cout << "Arguments:\n";
-        for (const auto &argument : _parser->get_argumentes())
+        std::string name = argument->get_name();
+        if (argument->is_required())
         {
-            std::cout << "  " << argument->get_name() << " - "
-                      << argument->get_description() << "\n";
+            name = "<" + name + ">";
         }
-        std::cout << '\n';
+
+        std::cout << "  " << std::left << std::setw(24) << name
+                  << argument->get_description() << "\n";
     }
+    std::cout << '\n';
 
     return true;
 }

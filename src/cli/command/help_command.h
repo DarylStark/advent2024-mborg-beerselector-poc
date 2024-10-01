@@ -1,6 +1,8 @@
 #ifndef HELD_COMMAND_H
 #define HELD_COMMAND_H
 
+#include <iomanip>
+
 #include "../parser/argumented_command_parser.h"
 #include "command.h"
 
