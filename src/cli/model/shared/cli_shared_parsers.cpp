@@ -15,7 +15,8 @@ CLIReloadParserFactory::_create_parser()
 {
     // Parser for the ROMMON mode
     std::shared_ptr<ArgumentendCommandParser> parser =
-        std::make_shared<ArgumentendCommandParser>("Reload");
+        std::make_shared<ArgumentendCommandParser>("Reload",
+                                                   "Reload the device.");
 
     return parser;
 }

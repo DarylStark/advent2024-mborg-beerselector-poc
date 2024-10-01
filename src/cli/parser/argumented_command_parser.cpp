@@ -3,20 +3,20 @@
 #include "../command/help_command.h"
 
 ArgumentendCommandParser::ArgumentendCommandParser(
-    const std::string description, std::shared_ptr<Command> command,
-    bool add_helper, bool show_in_help)
-    : Parser(description, show_in_help), _required_arguments(0),
+    const std::string description, const std::string help,
+    std::shared_ptr<Command> command, bool add_helper, bool show_in_help)
+    : Parser(description, help, show_in_help), _required_arguments(0),
       _command(command)
 {
     if (add_helper)
     {
         auto help_command = std::make_shared<HelpCommand>(this);
+        this->add_parser("?", std::make_shared<ArgumentendCommandParser>(
+                                  "Help about this command", "", help_command,
+                                  false, false));
         this->add_parser(
-            "?", std::make_shared<ArgumentendCommandParser>(
-                     "Help about this command", help_command, false, false));
-        this->add_parser("help",
-                         std::make_shared<ArgumentendCommandParser>(
-                             "Help about this command", help_command, false));
+            "help", std::make_shared<ArgumentendCommandParser>(
+                        "Help about this command", "", help_command, false));
     }
 }
 

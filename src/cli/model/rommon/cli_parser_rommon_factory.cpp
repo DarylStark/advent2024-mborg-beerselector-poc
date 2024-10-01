@@ -9,12 +9,15 @@ CLIParserROMMONFactory::_get_auth_parser()
     // Auth
     std::shared_ptr<ArgumentendCommandParser> parser =
         std::make_shared<ArgumentendCommandParser>(
-            "Authentication configuration");
+            "Authentication configuration",
+            "Configure authentication settings like username and password and "
+            "the password to enter privileged mode.");
 
     // auth credentials <username> <password>
     std::shared_ptr<ArgumentendCommandParser> credentials =
         std::make_shared<ArgumentendCommandParser>(
-            "Authentication credentials");
+            "Authentication credentials",
+            "Set the credentials to log in to the device.");
     credentials->add_argument(std::make_shared<StringArgument>(
         "username", true, "The username to set"));
     credentials->add_argument(std::make_shared<StringArgument>(
@@ -23,7 +26,9 @@ CLIParserROMMONFactory::_get_auth_parser()
     // auth enable <password>
     std::shared_ptr<ArgumentendCommandParser> enable =
         std::make_shared<ArgumentendCommandParser>(
-            "Set password for privilegd mode");
+            "Set password for privilegd mode",
+            "Set the password that is used "
+            "to enter privileged mode.");
     enable->add_argument(std::make_shared<StringArgument>(
         "password", true, "The password to set"));
 
@@ -39,7 +44,8 @@ CLIParserROMMONFactory::_create_parser()
 {
     // Parser for the ROMMON mode
     std::shared_ptr<ArgumentendCommandParser> parser =
-        std::make_shared<ArgumentendCommandParser>("ROMMON");
+        std::make_shared<ArgumentendCommandParser>(
+            "ROMMON mode", "ROMMON mode is for experienced users only!");
 
     // Add shared parsers
     parser->add_parser("reload", CLISharedParser::get_reload_parser());
