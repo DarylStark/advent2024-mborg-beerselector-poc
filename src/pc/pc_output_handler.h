@@ -12,7 +12,7 @@ namespace ds::pc
     public:
         void print(const std::string text) const;
         void println(const std::string text = "") const;
-        void flush();
+        void flush() const;
     };
 }  // namespace ds::pc
 

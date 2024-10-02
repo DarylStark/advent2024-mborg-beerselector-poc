@@ -1,6 +1,7 @@
 #ifndef __PC_INPUT_HANDLER_H__
 #define __PC_INPUT_HANDLER_H__
 
+#include <limits>
 #include <string>
 
 #include "../ds/input_handler.h"

@@ -1,11 +1,23 @@
 #include "cli_runner.h"
 
+#include <iostream>
+
 #include "../parser/exceptions.h"
+
+std::shared_ptr<ds::PlatformObjectFactory> CLIRunner::_factory = nullptr;
 
 CLIRunner::CLIRunner(std::shared_ptr<ArgumentendCommandParser> parser,
                      const std::string prompt)
     : _parser(parser), _prompt(prompt)
 {
+    if (_factory == nullptr)
+        throw std::runtime_error(
+            "PlatformObjectFactory not set for the CLIRunner class");
+}
+
+void CLIRunner::set_factory(std::shared_ptr<ds::PlatformObjectFactory> factory)
+{
+    _factory = factory;
 }
 
 void CLIRunner::set_prompt(const std::string prompt)
@@ -15,25 +27,13 @@ void CLIRunner::set_prompt(const std::string prompt)
 
 bool CLIRunner::run()
 {
+    const auto& output_handler = _factory->get_output_handler();
+    const auto& input_handler = _factory->get_input_handler();
+
     while (true)
     {
-        std::string command;
-        std::cout << _prompt;
-        std::getline(std::cin, command);
-
-        if (std::cin.eof())
-        {
-            // Handle EOF (CTRL+D)
-            std::clearerr(stdin);
-            std::cin.clear();
-            return false;
-        }
-        if (!std::cin.good())
-        {
-            // Handle other input errors
-            std::cin.clear();  // Clear the error state
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
+        output_handler->print(_prompt);
+        std::string command = input_handler->get_string();
 
         std::stringstream iss(command);
         std::vector<std::string> words(std::istream_iterator<std::string>{iss},
@@ -48,7 +48,7 @@ bool CLIRunner::run()
         }
         catch (const ParseException& e)
         {
-            std::cerr << e.what() << std::endl;
+            output_handler->println(e.what());
             return true;
         }
     }

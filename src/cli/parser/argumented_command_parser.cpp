@@ -44,8 +44,10 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
         {
             if (argument_nr >= _arguments.size())
             {
-                throw WrongArgumentCountException(_arguments);
-                return true;
+                if (argument_nr == 0)
+                    throw ParseException("Command not found");
+                else
+                    throw WrongArgumentCountException(_arguments);
             }
 
             const auto &argument_object = _arguments[argument_nr];
