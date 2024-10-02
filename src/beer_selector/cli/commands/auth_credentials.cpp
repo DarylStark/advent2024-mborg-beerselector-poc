@@ -1,8 +1,8 @@
 #include "auth_credentials.h"
 
-#include <iostream>
-
 bool AuthCredentials::execute(std::map<std::string, std::string> args)
 {
-    std::cout << "HI" << std::endl;
+    Command::_factory->get_output_handler()->println(
+        "AuthCredentials command executed");
+    return true;
 }

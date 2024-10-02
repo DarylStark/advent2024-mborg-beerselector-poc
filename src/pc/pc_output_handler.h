@@ -11,7 +11,7 @@ namespace ds::pc
     {
     public:
         void print(const std::string text) const;
-        void println(const std::string text) const;
+        void println(const std::string text = "") const;
         void flush();
     };
 }  // namespace ds::pc
