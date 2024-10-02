@@ -1,5 +1,7 @@
 #include "cli_runner.h"
 
+#include "../parser/exceptions.h"
+
 CLIRunner::CLIRunner(std::shared_ptr<ArgumentendCommandParser> parser,
                      const std::string prompt)
     : _parser(parser), _prompt(prompt)
@@ -36,5 +38,13 @@ bool CLIRunner::run()
                                    std::istream_iterator<std::string>());
 
     // Parse
-    return _parser->parse(words);
+    try
+    {
+        return _parser->parse(words);
+    }
+    catch (const ParseException& e)
+    {
+        std::cerr << e.what() << std::endl;
+        return true;
+    }
 }

@@ -34,7 +34,7 @@ NotImplementedCommandException::NotImplementedCommandException()
 
 WrongArgumentCountException::WrongArgumentCountException(
     std::vector<std::shared_ptr<Argument>> arguments)
-    : ParseException("Too many arguments. Expected arguments:\n")
+    : ParseException("\nWrong argument count. Expected arguments:\n")
 {
     for (const auto& argument : arguments)
     {
