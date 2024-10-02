@@ -1,6 +1,7 @@
 #include "argumented_command_parser.h"
 
 #include "../command/help_command.h"
+#include "exceptions.h"
 
 ArgumentendCommandParser::ArgumentendCommandParser(
     const std::string description, const std::string help,
@@ -43,8 +44,7 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
         {
             if (argument_nr >= _arguments.size())
             {
-                // TODO: Throw exception about too many arguments
-                std::cerr << "Unrecognized argument: \"" << argument << "\"\n";
+                throw WrongArgumentCountException(_arguments);
                 return true;
             }
 
@@ -59,9 +59,7 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
 
     // Check if all required arguments are set
     if (argument_map.size() < _required_arguments)
-    {
-        std::cout << "MISSING ARGUMENTS!\n\n\n";
-    }
+        throw WrongArgumentCountException(_arguments);
 
     // Everything is parsed! Let's execute the command!
     return execute(argument_map);
@@ -72,7 +70,7 @@ bool ArgumentendCommandParser::execute(
 {
     if (_command) return _command->execute();
 
-    std::cerr << "This command is not implemented\n";
+    throw NotImplementedCommandException();
     return true;
 }
 
@@ -80,10 +78,9 @@ void ArgumentendCommandParser::add_argument(std::shared_ptr<Argument> argument)
 {
     // Check if the last argument in _argument was required and if so, throw
     // an exception
-    if (_arguments.size() > 0 && _arguments.back()->is_required() &&
-        !argument->is_required())
-        std::cout << "Adding non-required argument after required "
-                     "argument. ERROR.\n\n";
+    if (_arguments.size() > 0 && !_arguments.back()->is_required() &&
+        argument->is_required())
+        throw RequiredArgumentException(argument->get_name());
     _required_arguments += argument->is_required();
     _arguments.push_back(argument);
 }

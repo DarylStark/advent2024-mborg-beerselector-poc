@@ -1,12 +1,14 @@
 #ifndef __CLI_RUNNER_H__
 #define __CLI_RUNNER_H__
 
+#include <iostream>
 #include <iterator>
 #include <limits>
 #include <memory>
 #include <sstream>
 
 #include "../../cli/parser/argumented_command_parser.h"
+
 
 class CLIRunner
 {

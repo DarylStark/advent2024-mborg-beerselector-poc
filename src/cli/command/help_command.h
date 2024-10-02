@@ -2,6 +2,7 @@
 #define HELP_COMMAND_H
 
 #include <iomanip>
+#include <iostream>
 
 #include "../parser/argumented_command_parser.h"
 #include "command.h"

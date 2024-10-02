@@ -2,7 +2,6 @@
 #define __ARGUMENT_H__
 
 #include <algorithm>
-#include <iostream>
 #include <string>
 #include <vector>
 
