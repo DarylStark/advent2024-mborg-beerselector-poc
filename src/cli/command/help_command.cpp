@@ -4,7 +4,7 @@
 
 HelpCommand::HelpCommand(ArgumentendCommandParser *parser) : _parser(parser) {}
 
-bool HelpCommand::execute()
+bool HelpCommand::execute(std::map<std::string, std::string> args)
 {
     // TODO: Only show `Subcommands` and `Arguments` headers when there is
     // something to show

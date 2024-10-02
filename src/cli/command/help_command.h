@@ -14,7 +14,7 @@ private:
 
 public:
     HelpCommand(ArgumentendCommandParser* parser);
-    bool execute() override;
+    bool execute(std::map<std::string, std::string> args) override;
 };
 
 #endif /* HELP_COMMAND_H */

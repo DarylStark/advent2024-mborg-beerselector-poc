@@ -68,7 +68,7 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
 bool ArgumentendCommandParser::execute(
     std::map<std::string, std::string> args) const
 {
-    if (_command) return _command->execute();
+    if (_command) return _command->execute(args);
 
     throw NotImplementedCommandException();
     return true;

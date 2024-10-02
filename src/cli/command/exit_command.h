@@ -6,7 +6,7 @@
 class ExitCommand : public Command
 {
 public:
-    bool execute() override;
+    bool execute(std::map<std::string, std::string> args) override;
 };
 
 #endif /* EXIT_COMMAND_H */
