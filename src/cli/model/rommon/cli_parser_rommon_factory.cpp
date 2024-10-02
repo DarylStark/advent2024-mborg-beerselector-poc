@@ -1,5 +1,7 @@
 #include "./cli_parser_rommon_factory.h"
 
+#include "../../../beer_selector/cli/commands/auth_credentials.h"
+
 std::shared_ptr<ArgumentendCommandParser> CLIParserROMMONFactory::_parser =
     nullptr;
 
@@ -17,7 +19,8 @@ CLIParserROMMONFactory::_get_auth_parser()
     std::shared_ptr<ArgumentendCommandParser> credentials =
         std::make_shared<ArgumentendCommandParser>(
             "Authentication credentials",
-            "Set the credentials to log in to the device.");
+            "Set the credentials to log in to the device.",
+            std::make_shared<AuthCredentials>());
     credentials->add_argument(std::make_shared<StringArgument>(
         "username", true, "The username to set"));
     credentials->add_argument(std::make_shared<StringArgument>(
