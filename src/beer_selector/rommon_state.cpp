@@ -16,7 +16,7 @@ void RommonState::loop()
     _output_handler->println("INITIALIZING ROMMON\n\n");
 
     CLIParserROMMONFactory parser_factory;
-    std::shared_ptr<ArgumentendCommandParser> word_parser =
+    std::shared_ptr<ArgumentedCommandParser> word_parser =
         parser_factory.get_parser();
 
     _output_handler->println("ROMMON INITIALIZED\n\n");

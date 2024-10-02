@@ -9,10 +9,10 @@
 class HelpCommand : public Command
 {
 private:
-    ArgumentendCommandParser* _parser;
+    ArgumentedCommandParser* _parser;
 
 public:
-    HelpCommand(ArgumentendCommandParser* parser);
+    HelpCommand(ArgumentedCommandParser* parser);
     bool execute(std::map<std::string, std::string> args) override;
 };
 

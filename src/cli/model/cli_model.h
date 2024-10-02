@@ -9,7 +9,7 @@
 class CLIParserFactory
 {
 public:
-    virtual std::shared_ptr<ArgumentendCommandParser> get_parser() = 0;
+    virtual std::shared_ptr<ArgumentedCommandParser> get_parser() = 0;
 };
 
 #endif /* __CLI_MODEL_H__ */

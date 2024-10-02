@@ -7,13 +7,13 @@
 class CLIParserROMMONFactory : public CLIParserFactory
 {
 private:
-    static std::shared_ptr<ArgumentendCommandParser> _parser;
+    static std::shared_ptr<ArgumentedCommandParser> _parser;
 
-    std::shared_ptr<ArgumentendCommandParser> _create_parser();
-    std::shared_ptr<ArgumentendCommandParser> _get_auth_parser();
+    std::shared_ptr<ArgumentedCommandParser> _create_parser();
+    std::shared_ptr<ArgumentedCommandParser> _get_auth_parser();
 
 public:
-    std::shared_ptr<ArgumentendCommandParser> get_parser();
+    std::shared_ptr<ArgumentedCommandParser> get_parser();
 };
 
 #endif /* __CLI_PARSER_ROMMON_FACTORY_H__ */

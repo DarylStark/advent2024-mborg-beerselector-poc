@@ -2,7 +2,7 @@
 
 constexpr uint32_t COMMAND_COLUMN_LENGTH = 24;
 
-HelpCommand::HelpCommand(ArgumentendCommandParser *parser) : _parser(parser) {}
+HelpCommand::HelpCommand(ArgumentedCommandParser *parser) : _parser(parser) {}
 
 bool HelpCommand::execute(std::map<std::string, std::string> args)
 {

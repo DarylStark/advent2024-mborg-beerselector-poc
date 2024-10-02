@@ -2,22 +2,22 @@
 
 #include "../../../beer_selector/cli/commands/auth_credentials.h"
 
-std::shared_ptr<ArgumentendCommandParser> CLIParserROMMONFactory::_parser =
+std::shared_ptr<ArgumentedCommandParser> CLIParserROMMONFactory::_parser =
     nullptr;
 
-std::shared_ptr<ArgumentendCommandParser>
+std::shared_ptr<ArgumentedCommandParser>
 CLIParserROMMONFactory::_get_auth_parser()
 {
     // Auth
-    std::shared_ptr<ArgumentendCommandParser> parser =
-        std::make_shared<ArgumentendCommandParser>(
+    std::shared_ptr<ArgumentedCommandParser> parser =
+        std::make_shared<ArgumentedCommandParser>(
             "Authentication configuration",
             "Configure authentication settings like username and password and "
             "the password to enter privileged mode.");
 
     // auth credentials <username> <password>
-    std::shared_ptr<ArgumentendCommandParser> credentials =
-        std::make_shared<ArgumentendCommandParser>(
+    std::shared_ptr<ArgumentedCommandParser> credentials =
+        std::make_shared<ArgumentedCommandParser>(
             "Authentication credentials",
             "Set the credentials to log in to the device.",
             std::make_shared<AuthCredentials>());
@@ -27,8 +27,8 @@ CLIParserROMMONFactory::_get_auth_parser()
         "password", true, "The password to set"));
 
     // auth enable <password>
-    std::shared_ptr<ArgumentendCommandParser> enable =
-        std::make_shared<ArgumentendCommandParser>(
+    std::shared_ptr<ArgumentedCommandParser> enable =
+        std::make_shared<ArgumentedCommandParser>(
             "Set password for privilegd mode",
             "Set the password that is used "
             "to enter privileged mode.");
@@ -42,12 +42,12 @@ CLIParserROMMONFactory::_get_auth_parser()
     return parser;
 }
 
-std::shared_ptr<ArgumentendCommandParser>
+std::shared_ptr<ArgumentedCommandParser>
 CLIParserROMMONFactory::_create_parser()
 {
     // Parser for the ROMMON mode
-    std::shared_ptr<ArgumentendCommandParser> parser =
-        std::make_shared<ArgumentendCommandParser>(
+    std::shared_ptr<ArgumentedCommandParser> parser =
+        std::make_shared<ArgumentedCommandParser>(
             "ROMMON mode", "ROMMON mode is for experienced users only!");
 
     // Add shared parsers
@@ -60,7 +60,7 @@ CLIParserROMMONFactory::_create_parser()
     return parser;
 }
 
-std::shared_ptr<ArgumentendCommandParser> CLIParserROMMONFactory::get_parser()
+std::shared_ptr<ArgumentedCommandParser> CLIParserROMMONFactory::get_parser()
 {
     if (!_parser) _parser = _create_parser();
     return _parser;

@@ -14,11 +14,11 @@ protected:
     static std::shared_ptr<ds::PlatformObjectFactory> _factory;
 
 private:
-    std::shared_ptr<ArgumentendCommandParser> _parser;
+    std::shared_ptr<ArgumentedCommandParser> _parser;
     std::string _prompt;
 
 public:
-    CLIRunner(std::shared_ptr<ArgumentendCommandParser> parser,
+    CLIRunner(std::shared_ptr<ArgumentedCommandParser> parser,
               const std::string prompt);
     static void set_factory(std::shared_ptr<ds::PlatformObjectFactory> factory);
     void set_prompt(const std::string prompt);

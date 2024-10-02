@@ -6,7 +6,7 @@
 
 std::shared_ptr<ds::PlatformObjectFactory> CLIRunner::_factory = nullptr;
 
-CLIRunner::CLIRunner(std::shared_ptr<ArgumentendCommandParser> parser,
+CLIRunner::CLIRunner(std::shared_ptr<ArgumentedCommandParser> parser,
                      const std::string prompt)
     : _parser(parser), _prompt(prompt)
 {

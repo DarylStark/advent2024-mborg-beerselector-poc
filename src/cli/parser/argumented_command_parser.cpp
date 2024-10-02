@@ -3,7 +3,7 @@
 #include "../command/help_command.h"
 #include "exceptions.h"
 
-ArgumentendCommandParser::ArgumentendCommandParser(
+ArgumentedCommandParser::ArgumentedCommandParser(
     const std::string description, const std::string help,
     std::shared_ptr<Command> command, bool add_helper, bool show_in_help)
     : Parser(description, help, show_in_help), _required_arguments(0),
@@ -12,16 +12,16 @@ ArgumentendCommandParser::ArgumentendCommandParser(
     if (add_helper)
     {
         auto help_command = std::make_shared<HelpCommand>(this);
-        this->add_parser("?", std::make_shared<ArgumentendCommandParser>(
+        this->add_parser("?", std::make_shared<ArgumentedCommandParser>(
                                   "Help about this command", "", help_command,
                                   false, false));
         this->add_parser(
-            "help", std::make_shared<ArgumentendCommandParser>(
+            "help", std::make_shared<ArgumentedCommandParser>(
                         "Help about this command", "", help_command, false));
     }
 }
 
-bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
+bool ArgumentedCommandParser::parse(std::vector<std::string> arguments)
 {
     std::map<std::string, std::string> argument_map;
     if (arguments.size() > 0)
@@ -67,7 +67,7 @@ bool ArgumentendCommandParser::parse(std::vector<std::string> arguments)
     return execute(argument_map);
 }
 
-bool ArgumentendCommandParser::execute(
+bool ArgumentedCommandParser::execute(
     std::map<std::string, std::string> args) const
 {
     if (_command) return _command->execute(args);
@@ -76,7 +76,7 @@ bool ArgumentendCommandParser::execute(
     return true;
 }
 
-void ArgumentendCommandParser::add_argument(std::shared_ptr<Argument> argument)
+void ArgumentedCommandParser::add_argument(std::shared_ptr<Argument> argument)
 {
     // Check if the last argument in _argument was required and if so, throw
     // an exception
@@ -88,7 +88,7 @@ void ArgumentendCommandParser::add_argument(std::shared_ptr<Argument> argument)
 }
 
 const std::vector<std::shared_ptr<Argument>>
-    &ArgumentendCommandParser::get_argumentes() const
+    &ArgumentedCommandParser::get_argumentes() const
 {
     return _arguments;
 }

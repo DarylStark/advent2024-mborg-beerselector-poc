@@ -5,7 +5,7 @@
 #include "argument.h"
 #include "parser.h"
 
-class ArgumentendCommandParser : public Parser
+class ArgumentedCommandParser : public Parser
 {
 private:
     std::vector<std::shared_ptr<Argument>> _arguments;
@@ -13,10 +13,10 @@ private:
     std::shared_ptr<Command> _command;
 
 public:
-    ArgumentendCommandParser(const std::string description = std::string(""),
-                             const std::string help = std::string(""),
-                             std::shared_ptr<Command> command = nullptr,
-                             bool add_helper = true, bool show_in_help = true);
+    ArgumentedCommandParser(const std::string description = std::string(""),
+                            const std::string help = std::string(""),
+                            std::shared_ptr<Command> command = nullptr,
+                            bool add_helper = true, bool show_in_help = true);
     virtual bool parse(std::vector<std::string> arguments) override;
     virtual bool execute(std::map<std::string, std::string> args) const;
     void add_argument(std::shared_ptr<Argument> argument);
