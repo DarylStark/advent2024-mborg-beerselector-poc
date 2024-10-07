@@ -1,7 +1,7 @@
-#ifndef __ARDUINO_H__
-#define __ARDUINO_H__
+#ifndef ARDUINO_H
+#define ARDUINO_H
 
 void setup();
 void loop();
 
-#endif /* __ARDUINO_H__ */
+#endif /* ARDUINO_H */

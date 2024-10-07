@@ -1,5 +1,5 @@
-#ifndef __PC_CONFIGURATION_LOADER_H__
-#define __PC_CONFIGURATION_LOADER_H__
+#ifndef PC_CONFIGURATION_LOADER_H
+#define PC_CONFIGURATION_LOADER_H
 
 #include "../ds/configuration_loader.h"
 
@@ -12,4 +12,4 @@ namespace ds::pc
     };
 }  // namespace ds::pc
 
-#endif /* __PC_CONFIGURATION_LOADER_H__ */
+#endif /* PC_CONFIGURATION_LOADER_H */

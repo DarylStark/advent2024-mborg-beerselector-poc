@@ -1,5 +1,5 @@
-#ifndef __PC_INPUT_HANDLER_H__
-#define __PC_INPUT_HANDLER_H__
+#ifndef PC_INPUT_HANDLER_H
+#define PC_INPUT_HANDLER_H
 
 #include <limits>
 #include <string>
@@ -17,4 +17,4 @@ namespace ds::pc
     };
 }  // namespace ds::pc
 
-#endif /* __PC_INPUT_HANDLER_H__ */
+#endif /* PC_INPUT_HANDLER_H */
