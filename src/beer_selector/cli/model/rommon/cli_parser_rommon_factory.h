@@ -1,8 +1,8 @@
 #ifndef CLI_PARSER_ROMMON_FACTORY_H
 #define CLI_PARSER_ROMMON_FACTORY_H
 
-#include "../cli_model.h"
-#include "../shared/cli_shared_parsers.h"
+#include "../../../../cli/model/cli_model.h"
+#include "../../../../cli/model/shared/cli_shared_parsers.h"
 
 class CLIParserROMMONFactory : public CLIParserFactory
 {
