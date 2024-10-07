@@ -11,10 +11,10 @@ namespace ds
     public:
         // Methods to print
         virtual void print(const std::string text) const = 0;
-        virtual void println(const std::string text) const = 0;
+        virtual void println(const std::string text = "") const = 0;
 
         // Stream maintenance
-        virtual void flush() = 0;
+        virtual void flush() const = 0;
     };
 }  // namespace ds
 

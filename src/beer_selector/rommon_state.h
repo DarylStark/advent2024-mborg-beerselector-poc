@@ -1,6 +1,9 @@
 #ifndef __ROMMON_STATE_H__
 #define __ROMMON_STATE_H__
 
+#include <iterator>
+#include <sstream>
+
 #include "../ds/base_state.h"
 
 class RommonState : public ds::BaseState
