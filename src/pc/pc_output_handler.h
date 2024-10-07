@@ -1,5 +1,5 @@
-#ifndef __PC_OUTPUT_HANDLER_H__
-#define __PC_OUTPUT_HANDLER_H__
+#ifndef PC_OUTPUT_HANDLER_H
+#define PC_OUTPUT_HANDLER_H
 
 #include <string>
 
@@ -16,4 +16,4 @@ namespace ds::pc
     };
 }  // namespace ds::pc
 
-#endif /* __PC_OUTPUT_HANDLER_H__ */
+#endif /* PC_OUTPUT_HANDLER_H */

@@ -1,5 +1,5 @@
-#ifndef __PC_OS_H__
-#define __PC_OS_H__
+#ifndef PC_OS_H
+#define PC_OS_H
 
 #include "../ds/os.h"
 
@@ -12,4 +12,4 @@ namespace ds::pc
     };
 }  // namespace ds::pc
 
-#endif /* __PC_OS_H__ */
+#endif /* PC_OS_H */

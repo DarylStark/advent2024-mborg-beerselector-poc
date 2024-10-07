@@ -1,5 +1,5 @@
-#ifndef __PC_OBJECT_FACTORY_H__
-#define __PC_OBJECT_FACTORY_H__
+#ifndef PC_OBJECT_FACTORY_H
+#define PC_OBJECT_FACTORY_H
 
 #include <memory>
 
@@ -19,4 +19,4 @@ namespace ds::pc
     };
 }  // namespace ds::pc
 
-#endif /* __PC_OBJECT_FACTORY_H__ */
+#endif /* PC_OBJECT_FACTORY_H */
